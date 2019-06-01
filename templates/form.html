@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block title %}Дадайте файл с номерами карта{% endblock %}
+{% block content %}
+    <form action="{{ url_for('result') }}" method=post enctype=multipart/form-data>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input">
+                <label class="custom-file-label">Обрати файл</label>
+            </div>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-primary">Перевірити</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
