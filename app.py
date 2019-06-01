@@ -36,7 +36,7 @@ def result():
             file = request.files['file']
         else:
             return redirect(url_for('upload_file'))
-        if file.filename == '' and file and allowed_file(file.filename):
+        if file.filename != '' and file and allowed_file(file.filename):
             text = file.read()
             data = check_card(text_with_numbers=str(text))
             return render_template(template_name_or_list='result.html', data=data)
