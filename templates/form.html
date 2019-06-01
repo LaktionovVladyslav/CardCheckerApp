@@ -2,6 +2,18 @@
 {% block title %}Дадайте файл с номерами карта{% endblock %}
 {% block content %}
     <form action="{{ url_for('result') }}" method=post enctype=multipart/form-data>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="result" id="exampleRadios1" value="in_site" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Переглянути в додатку
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="result" id="exampleRadios2" value="in_file">
+            <label class="form-check-label" for="exampleRadios2">
+                Отримати результат у файлі
+            </label>
+        </div>
         <div class="input-group">
             <div class="custom-file">
                 <input type="file" name="file" class="custom-file-input">

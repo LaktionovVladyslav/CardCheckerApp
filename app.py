@@ -1,4 +1,4 @@
-from flask import Flask, request, flash, redirect, render_template, url_for
+from flask import Flask, request, redirect, render_template, url_for, Response
 import requests
 import re
 
@@ -39,7 +39,15 @@ def result():
         if file.filename != '' and file and allowed_file(file.filename):
             text = file.read()
             data = check_card(text_with_numbers=str(text))
-            return render_template(template_name_or_list='result.html', data=data)
+            if request.form['result'] == 'in_file':
+                result_text = ''
+                for key, value in data:
+                    result_text += f'{key}, {value}\n'
+                return Response(result_text,
+                                mimetype="text/plain",
+                                headers={"Content-Disposition": "attachment;filename=result.txt"})
+            else:
+                return render_template(template_name_or_list='result.html', data=data)
         else:
             return redirect(url_for('upload_file'))
 
